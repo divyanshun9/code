@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define max 50
+void push(int a);
+int pop();
+int top=-1;
+char stack[max];
+
+int main()
+{
+  int operand1,operand2;
+  char expression[50],s;
+  printf("enter the postfix expression\n");
+  scanf("%s",expression);
+  
+  int i=0;
+  while(expression[i]!='\0')
+  {
+      s=expression[i];
+      if(isalnum(s))
+       push(s-'0');
+      else
+      {
+          operand1=pop();
+          operand2=pop();
+          if(s=='+')
+           push(operand2+operand1);
+          else if(s=='-')
+           push(operand1-operand2);
+          else if(s=='*')
+           push(operand1 * operand2);
+          else if(s=='/')
+          push(operand1/operand2);
+      }
+      i++;
+  }
+  printf("result =%d",stack[top]);
+}
+
+void push(int a)
+{
+    top++;
+    stack[top]=a;
+}
+
+int pop()
+{
+    return (stack[top--]);
+}
