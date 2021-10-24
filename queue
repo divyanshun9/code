@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<stdlib.h>
+#define max 100
+int qu[max] ;
+int front=-1;
+int rear =-1;
+
+
+void add()
+{
+    int n;
+    
+    if(rear==max-1)
+      {
+          printf("queue overflow\n");
+      }
+    else
+    {
+       if(front==-1)
+         front =0;
+     printf("enter the element to be added\n");
+     scanf("%d",&n);
+      rear++;
+       qu[rear]=n;
+    }
+}
+
+void delete()
+{
+    if(front==-1)
+     {
+         printf("queue underflow\n");
+         return;
+     }    
+     int temp=qu[front];
+     if(front ==rear)
+     {
+         front =-1;
+         rear=-1;
+     }
+    else
+      front++;
+      
+    printf("deleted element =%d\n",temp);  
+}
+
+void display()
+{
+    if(front==-1)
+     printf("queue is empty\n");
+    else
+     for(int i=front;i<=rear;i++)
+     {
+        printf("%d ",qu[i]);
+     }
+     printf("\n");
+}
+
+int main()
+{
+    int n;
+    printf("1:to add\n2:to delete\n3:to display\n4:to quit\n");
+    while(1)
+    {
+        int a;
+        printf("enter your choice\n");
+        scanf("%d",&a);
+        switch(a)
+        {
+            case 1:
+               add();
+               break;
+            case 2:
+               delete();
+               break;
+            case 3:
+               display();
+               break;
+            case 4:
+                exit(1);
+                break;
+            case 5:
+                printf("wrong choice\n");
+                break;
+        }
+    }
+    return 0;
+}
